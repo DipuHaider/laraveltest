@@ -1,16 +1,23 @@
 <?php
-use app/User;
+
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UserTableSeeder extends Seeder
 {
-    /**
+/**
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-       $users = factory(User::class, 10)->create();
+        for ($i=0; $i < 3; $i++) { 
+	    	User::create([
+	            'name' => str_random(8),
+	            'email' => str_random(12).'@mail.com',
+	            'password' => bcrypt('123456')
+	        ]);
+    	}
     }
 }
